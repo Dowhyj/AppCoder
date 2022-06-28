@@ -1,0 +1,29 @@
+{% extends 'AppCoder/base.html' %}
+{% load static %}
+
+{% block tituloPagina %}
+Buscar alumno - AppCoder
+{% endblock %}
+
+{% block contenidoPagina %}
+
+<p> Buscar alumno:
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <input type="text" name="Nombre alumno">
+        <input type="submit" value="Buscar alumno">
+
+    </form>
+</p>
+
+<p> Resultados:
+    <ul>
+        {% for nombreAlumno in nombres %}
+            <li> {{nombreAlumno.nombre}} </li>
+        {% endfor %}
+    </ul>
+</p>
+
+
+{% endblock %}

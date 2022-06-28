@@ -36,7 +36,23 @@ def crearAlumno(request):
         formularioVacio = formularioAlumno()
         
         return render(request,"AppCoder/form_crear_alumno.html",{"form":formularioVacio})
+   
+def buscarAlumno(request):
     
+    if request.method == "POST":
+        
+        nombre = request.POST["nombre"]    
+
+        nombres = Alumno.objects.filter(nombre__icontains=nombre)
+        
+        return render(request,"AppCoder/buscar_alumno.html",{"nombres":nombres})
+    
+    else: 
+        
+        nombres = []
+
+        return render(request,"AppCoder/buscar_alumno.html",{"nombres":nombres})
+ 
 def crearProfesor(request):
     
     if request.method == "POST":
