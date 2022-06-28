@@ -59,6 +59,32 @@ def crearProfesor(request):
         
     else:
         
-        formularioVacio = formularioAlumno()
+        formularioVacio = formularioProfesor()
         
         return render(request,"AppCoder/form_crear_profesor.html",{"form":formularioVacio})
+    
+def crearCurso(request):
+    
+    if request.method == "POST":
+    
+        formulario = formularioCurso(request.POST)
+        
+        if formulario.is_valid():
+            
+            info_curso = formulario.cleaned_data
+            
+            curso = Curso(nombre=info_curso["nombre"], comision=info_curso["comision"])
+            
+            curso.save()
+            
+            return redirect('crearCurso')
+        
+        else:
+            
+            return render(request,"AppCoder/form_crear_curso.html",{"form":formulario})
+        
+    else:
+        
+        formularioVacio = formularioCurso()
+        
+        return render(request,"AppCoder/form_crear_curso.html",{"form":formularioVacio})
