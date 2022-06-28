@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Familiar
+from .models import *
 
 class FamiliarAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'edad', 'fecha_nacimiento')
