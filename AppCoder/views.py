@@ -12,7 +12,12 @@ def base(request):
     return render(request, 'AppCoder/base.html',{})
 
 def alumnos(request):
-    return render(request, 'AppCoder/alumnos.html',{})
+    
+    alumnos = Alumno.objects.all()
+    
+    ctx = {"alumnos":alumnos}
+    
+    return render(request, 'AppCoder/alumnos.html',ctx)
 
 def profesores(request):
     return render(request, 'AppCoder/profesores.html',{})
