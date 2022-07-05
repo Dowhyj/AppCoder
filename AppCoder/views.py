@@ -11,6 +11,15 @@ def index(request):
 def base(request):
     return render(request, 'AppCoder/base.html',{})
 
+def alumnos(request):
+    return render(request, 'AppCoder/alumnos.html',{})
+
+def profesores(request):
+    return render(request, 'AppCoder/profesores.html',{})
+
+def cursos(request):
+    return render(request, 'AppCoder/cursos.html',{})
+
 def crearAlumno(request):
     
     if request.method == "POST":
