@@ -7,5 +7,12 @@ Profesores - AppCoder
 
 {% block contenidoPagina %}
 
+<h1>Los profesores registrados son:</h1>
+
+{% for profesor in profesores %}
+
+<p>{{ profesor.nombre }} {{ profesor.apellido }}</p>
+
+{% endfor %}
 
 {% endblock %}
