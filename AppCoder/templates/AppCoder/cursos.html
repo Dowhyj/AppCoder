@@ -7,5 +7,12 @@ Cursos - AppCoder
 
 {% block contenidoPagina %}
 
+<h1>Los cursos registrados son:</h1>
+
+{% for curso in cursos %}
+
+<p>{{ curso.nombre }} [{{ curso.comision }}]</p>
+
+{% endfor %}
 
 {% endblock %}

@@ -27,6 +27,14 @@ def profesores(request):
     
     return render(request, 'AppCoder/profesores.html',ctx)
 
+def cursos(request):
+    
+    cursos = Curso.objects.all
+    
+    ctx = {"cursos":cursos}
+    
+    return render(request, 'AppCoder/cursos.html',ctx)
+
 def profesores(request):
     return render(request, 'AppCoder/profesores.html',{})
 
