@@ -86,6 +86,10 @@ def editarAlumno(request, alumno_id):
             alumno.save()
             
             return redirect("alumnos")
+        
+    formulario = formularioAlumno(initial={"nombre":alumno.nombre, "apellido":alumno.apellido, "email": alumno.email})
+    
+    return render(request,"AppCoder/form_crear_alumno.html",{"form":formulario})
 
 def profesores(request):
     
