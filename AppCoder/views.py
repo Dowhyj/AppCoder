@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
+
 from .forms import *
 from .models import *
 
+from django.db.models import Q
 
 # Create your views here.
 
@@ -14,11 +16,19 @@ def base(request):
 
 def alumnos(request):
     
+    if request.method=="POST":
+        
+        search = request.POST["search"]
+        
+        if search != "":
+            
+            alumnos = Alumno.objects.filter( Q(nombre__icontains=search) | Q(apellido__icontains=search)).values()
+            
+            return render(request,"AppCoder/alumnos.html",{"alumnos":alumnos, "search":True, "busqueda":search})
+    
     alumnos = Alumno.objects.all()
     
-    ctx = {"alumnos":alumnos}
-    
-    return render(request, 'AppCoder/alumnos.html',ctx)
+    return render(request, 'AppCoder/alumnos.html',{"alumnos":alumnos})
 
 def crearAlumno(request):
     
@@ -50,17 +60,17 @@ def buscarAlumno(request):
     
     if request.method == "POST":
         
-        nombre = request.POST["nombre"]    
+        alumno = request.POST["alumno"]    
 
-        nombres = Alumno.objects.filter(nombre__icontains=nombre)
+        alumnos = Alumno.objects.filter( Q(nombre__icontains=alumno) | Q(apellido__icontains=alumno) ).values()
         
-        return render(request,"AppCoder/buscar_alumno.html",{"nombres":nombres})
+        return render(request,"AppCoder/buscar_alumno.html",{"alumnos":alumnos})
     
     else: 
         
-        nombres = []
+        alumnos = []
 
-        return render(request,"AppCoder/buscar_alumno.html",{"nombres":nombres})
+        return render(request,"AppCoder/buscar_alumno.html",{"alumnos":alumnos})
 
 def eliminarAlumno(request, alumno_id):
     
@@ -90,6 +100,7 @@ def editarAlumno(request, alumno_id):
     formulario = formularioAlumno(initial={"nombre":alumno.nombre, "apellido":alumno.apellido, "email": alumno.email})
     
     return render(request,"AppCoder/form_crear_alumno.html",{"form":formulario})
+
 
 def profesores(request):
     
