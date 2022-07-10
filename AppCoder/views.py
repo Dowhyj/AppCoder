@@ -11,6 +11,7 @@ def index(request):
 def base(request):
     return render(request, 'AppCoder/base.html',{})
 
+
 def alumnos(request):
     
     alumnos = Alumno.objects.all()
@@ -18,28 +19,6 @@ def alumnos(request):
     ctx = {"alumnos":alumnos}
     
     return render(request, 'AppCoder/alumnos.html',ctx)
-
-def profesores(request):
-    
-    profesores = Profesor.objects.all()
-    
-    ctx = {"profesores":profesores}
-    
-    return render(request, 'AppCoder/profesores.html',ctx)
-
-def cursos(request):
-    
-    cursos = Curso.objects.all
-    
-    ctx = {"cursos":cursos}
-    
-    return render(request, 'AppCoder/cursos.html',ctx)
-
-def profesores(request):
-    return render(request, 'AppCoder/profesores.html',{})
-
-def cursos(request):
-    return render(request, 'AppCoder/cursos.html',{})
 
 def crearAlumno(request):
     
@@ -55,7 +34,7 @@ def crearAlumno(request):
             
             alumno.save()
             
-            return redirect('crearAlumno')
+            return redirect('alumnos')
         
         else:
             
@@ -66,7 +45,7 @@ def crearAlumno(request):
         formularioVacio = formularioAlumno()
         
         return render(request,"AppCoder/form_crear_alumno.html",{"form":formularioVacio})
-   
+
 def buscarAlumno(request):
     
     if request.method == "POST":
@@ -82,7 +61,40 @@ def buscarAlumno(request):
         nombres = []
 
         return render(request,"AppCoder/buscar_alumno.html",{"nombres":nombres})
- 
+
+def eliminarAlumno(request, alumno_id):
+    
+    alumno = Alumno.objects.get(id=alumno_id)
+    alumno.delete()
+    
+    return redirect("alumnos")
+
+def editarAlumno(request, alumno_id):
+    
+    alumno = Alumno.objects.get(id=alumno_id)
+    
+    if request.method == "POST":
+        
+        formulario = formularioAlumno(request.POST)
+        
+        if formulario.is_valid():
+            
+            info_alumno = formulario.cleaned_data
+            alumno.nombre = info_alumno["nombre"]
+            alumno.apellido = info_alumno["apellido"]
+            alumno.email = info_alumno["email"]
+            alumno.save()
+            
+            return redirect("alumnos")
+
+def profesores(request):
+    
+    profesores = Profesor.objects.all()
+    
+    ctx = {"profesores":profesores}
+    
+    return render(request, 'AppCoder/profesores.html',ctx)
+
 def crearProfesor(request):
     
     if request.method == "POST":
@@ -108,6 +120,16 @@ def crearProfesor(request):
         formularioVacio = formularioProfesor()
         
         return render(request,"AppCoder/form_crear_profesor.html",{"form":formularioVacio})
+
+
+
+def cursos(request):
+    
+    cursos = Curso.objects.all
+    
+    ctx = {"cursos":cursos}
+    
+    return render(request, 'AppCoder/cursos.html',ctx)
     
 def crearCurso(request):
     
