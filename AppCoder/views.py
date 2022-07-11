@@ -5,6 +5,10 @@ from .models import *
 
 from django.db.models import Q
 
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
 # Create your views here.
 
 def index(request):
@@ -171,3 +175,30 @@ def crearCurso(request):
         formularioVacio = formularioCurso()
         
         return render(request,"AppCoder/form_crear_curso.html",{"form":formularioVacio})
+    
+class CursosList(ListView):
+    
+    model = Curso
+    template_name = "AppCoder/cursos_list.html"
+    
+class CursoDetail(DetailView):
+    
+    model = Curso
+    template_name = "AppCoder/curso_detail.html"
+    
+class CursoCreate(CreateView):
+    
+    model = Curso
+    success_url = "/AppCoder/curso/list"
+    fields = ["nombre", "comision"]
+    
+class CursoUpdate(UpdateView):
+    
+    model = Curso
+    success_url = "/AppCoder/curso/list"
+    fields = ["nombre", "comision"]
+    
+class CursoDelete(DeleteView):
+    
+    model = Curso
+    success_url = "/AppCoder/curso/list"

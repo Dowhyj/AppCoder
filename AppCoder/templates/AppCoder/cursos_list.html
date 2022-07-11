@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista cursos</title>
+</head>
+<body>
+    <h2>Cursos:</h2>
+    <ul>
+        {% for curso in object_list %}
+        <li>
+            Curso: {{curso.nombre}} {{curso.comision}}
+            <a href="{% url 'curso_detail' curso.id %}">Ver</a>
+            <a href="{% url 'curso_update' curso.id %}">Editar</a>
+            <a href="{% url 'curso_delete' curso.id %}">Eliminar</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'curso_create' %}">Crear curso</a>
+</body>
+</html>
