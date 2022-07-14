@@ -6,6 +6,8 @@ urlpatterns = [
     path('', index, name="index"),
     path('base/', base, name="base"),
     
+    path('login', login_request, name="login"),
+    
     
     path('alumnos', alumnos, name="alumnos"),
     path('crearAlumno/', crearAlumno, name="crearAlumno"),
