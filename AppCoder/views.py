@@ -47,6 +47,33 @@ def login_request(request):
     
     return render(request, "AppCoder/login.html", {"form":form})
 
+def register_request(request):
+
+    if request.method == "POST":
+        
+        form = UserCreationForm(request.POST)
+
+        if form.is_valid():
+
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1') # es la primer contraseña, no la confirmacion
+
+            form.save() # registramos el usuario
+            # iniciamos la sesion
+            user = authenticate(username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                return redirect("index")
+            else:
+                return redirect("login")
+
+        return render(request,"AppCoder/register.html",{"form":form})
+
+    form = UserCreationForm()
+
+    return render(request,"AppCoder/register.html",{"form":form})
+
 def alumnos(request):
     
     if request.method=="POST":
