@@ -9,7 +9,7 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 
 # Create your views here.
@@ -73,6 +73,11 @@ def register_request(request):
     form = UserCreationForm()
 
     return render(request,"AppCoder/register.html",{"form":form})
+
+def logout_request(request):
+    logout(request)
+    return redirect("index")
+
 
 def alumnos(request):
     
