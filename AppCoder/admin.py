@@ -17,3 +17,5 @@ class ProfesorAdmin(admin.ModelAdmin):
 admin.site.register(Alumno, AlumnoAdmin)
 admin.site.register(Curso, CursoAdmin)
 admin.site.register(Profesor, ProfesorAdmin)
+
+admin.site.register(Avatar)

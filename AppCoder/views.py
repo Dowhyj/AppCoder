@@ -17,6 +17,15 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def index(request):
+    
+    if request.user.is_authenticated:
+        try:
+            avatar = Avatar.objects.get(usuario=request.user)
+            url = avatar.imagen.url
+        except:
+            url = "/media/avatar/avatar_generico.png"
+        return render (request, "AppCoder/index.html",{"url":url})
+    
     return render(request, 'AppCoder/index.html',)
 
 def base(request):
@@ -106,6 +115,29 @@ def editar_perfil(request):
         form = UserEditForm(initial={"email":user.email, "first_name":user.first_name, "last_name":user.last_name})
 
     return render(request,"AppCoder/editar_perfil.html",{"form":form})
+
+
+@login_required
+def agregar_avatar(request):
+
+    if request.method == "POST":
+
+        form = AvatarForm(request.POST, request.FILES)
+
+        if form.is_valid():
+
+            user = User.objects.get(username=request.user.username)
+
+            avatar = Avatar(usuario=user, imagen=form.cleaned_data["imagen"])
+
+            avatar.save()
+
+            return redirect("index")
+
+    else:
+        form = AvatarForm()
+
+    return render(request,"AppCoder/agregar_avatar.html",{"form":form})
 
 
 def alumnos(request):

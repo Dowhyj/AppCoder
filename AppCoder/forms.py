@@ -3,6 +3,16 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
+from .models import Avatar
+
+class AvatarForm(forms.Form):
+
+    imagen = forms.ImageField(label="Imagen", required=False)
+
+    class Meta:
+        model = Avatar
+        fields = ['imagen']
+
 class formularioAlumno(forms.Form):
     nombre = forms.CharField(max_length=30, label="Nombre")
     apellido = forms.CharField(max_length=30)
