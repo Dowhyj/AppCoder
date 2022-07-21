@@ -1,0 +1,61 @@
+{% extends 'AppCoder/base.html' %}
+{% load static %}
+
+{% block tituloPagina %}
+Profesores - AppCoder
+{% endblock %}
+
+{% block contenidoPagina %}
+
+<div class="container px-5">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Profesion</th>
+                <th scope="col">Curso</th>
+                {% if user.is_authenticated %}
+                <th scope="col">Contacto</th>
+                {% endif %}
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for profe in object_list %}
+
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{profe.nombre}}</td>
+                <td>{{profe.apellido}}</td>
+                <td>{{profe.profesion}}</td>
+                <td>{{profe.curso}}</td>
+                {% if user.is_authenticated %}
+                <td>{{profe.email}}</td>
+                {% endif %}
+                {% if user.is_superuser %}
+                <td>
+                    <a href="{% url 'profe_update' profe.id %}"
+                        class="text-primary badge badge-primary text-decoration-none"> <i
+                            class="bi bi-pencil-square"></i>
+                        Editar</a>
+                    <a href="{% url 'profe_delete' profe.id %}"
+                        class="text-danger badge badge-danger text-decoration-none">
+                        <i class="bi bi-x-square"></i> Eliminar</a>
+                </td>
+                {% endif %}
+
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% if user.is_superuser %}
+    <a href="" class="link-dark">+Agregar profesor</a>
+    {% endif %}
+</div>
+
+{% endblock %}

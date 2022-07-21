@@ -22,6 +22,8 @@ class formularioProfesor(forms.Form):
     nombre = forms.CharField(max_length=30, label="Nombre")
     apellido = forms.CharField(max_length=30)
     email = forms.EmailField()
+    profesion = forms.CharField(max_length=150)
+    curso = forms.CharField(max_length=30)
     
 class formularioCurso(forms.Form):
     nombre = forms.CharField(max_length=30)
@@ -29,7 +31,6 @@ class formularioCurso(forms.Form):
     
 class UserRegisterForm(UserCreationForm):
     
-    user_name = forms.CharField(label="Nombre de usuario")
     first_name = forms.CharField(label="Nombre", required=False)
     last_name = forms.CharField(label="Apellido", required=False)
     email = forms.EmailField(label="Email")
@@ -38,7 +39,7 @@ class UserRegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = [ 'user_name', 'first_name', 'last_name', 'email', 'password1', 'password2']
+        fields = [ 'username', 'first_name', 'last_name', 'email', 'password1', 'password2']
 
         help_texts = {k:"" for k in fields}
         

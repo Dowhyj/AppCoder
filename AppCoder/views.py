@@ -12,6 +12,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -104,7 +105,6 @@ def editar_perfil(request):
             user.email = info["email"]
             user.first_name = info["first_name"]
             user.last_name = info["last_name"]
-            
 
             user.save()
 
@@ -228,41 +228,33 @@ def editarAlumno(request, alumno_id):
     return render(request,"AppCoder/form_crear_alumno.html",{"form":formulario})
 
 
-def profesores(request):
-    
-    profesores = Profesor.objects.all()
-    
-    ctx = {"profesores":profesores}
-    
-    return render(request, 'AppCoder/profesores.html',ctx)
+class ProfesList(ListView):
 
-def crearProfesor(request):
-    
-    if request.method == "POST":
-    
-        formulario = formularioProfesor(request.POST)
-        
-        if formulario.is_valid():
-            
-            info_profesor = formulario.cleaned_data
-            
-            profesor = Profesor(nombre=info_profesor["nombre"], apellido=info_profesor["apellido"], email=info_profesor["email"])
-            
-            profesor.save()
-            
-            return redirect('crearProfesor')
-        
-        else:
-            
-            return render(request,"AppCoder/form_crear_profesor.html",{"form":formulario})
-        
-    else:
-        
-        formularioVacio = formularioProfesor()
-        
-        return render(request,"AppCoder/form_crear_profesor.html",{"form":formularioVacio})
+    model = Profesor
+    template_name = "AppCoder/profesores_list.html"
 
+class ProfeDetail(DetailView):
 
+    model = Profesor
+    template_name = "AppCoder/profesor_detail.html"
+
+class ProfeCreate(CreateView):
+
+    model = Profesor
+    success_url = "/AppCoder/profesores_list/"
+    fields = ["nombre", "apellido", "email", "profesion"]
+
+class ProfeUpdate(UpdateView):
+
+    model = Profesor
+    success_url = "/AppCoder/profesores_list/"
+    fields = ["nombre", "apellido", "email", "profesion"]
+
+class ProfeDelete(DeleteView):
+
+    model = Profesor
+    success_url = "/AppCoder/profesores_list/"
+    
 
 def cursos(request):
     
