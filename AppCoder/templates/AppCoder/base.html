@@ -30,12 +30,26 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'cursos' %}">Cursos</a></li>
                         
                         {% if user.is_authenticated %}
+                            <div class="dropdown">
+                                <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-circle"></i><b>{{user.username}}</b>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="{% url 'editar_perfil' %}">Editar</a></li>
+                                <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
+                                </ul>
+                            </div>
+                        {% else %}
+                            <li class="nav-item"><a class="btn btn-primary mx-2 btn-sm" href="{% url 'login' %}">Iniciar Sesión</a></li>
+                            <li class="nav-item"><a class="btn btn-outline-primary btn-sm" href="{% url 'register' %}">Registrarse</a></li>
+                        {% endif %}
+
+                        <!-- {% if user.is_authenticated %}
                             <li class="nav-item"><p class="text-light my-2 mx-2"><i class="bi bi-person-circle"></i><b>{{user.username}}</b></p></li>
                             <li class="nav-item"><a class="btn btn-primary mx-2 btn-sm" href="{% url 'logout' %}">Cerrar Sesión</a></li>
                         {% else %}
                             <li class="nav-item"><a class="btn btn-primary mx-2 btn-sm" href="{% url 'login' %}">Iniciar Sesión</a></li>
                             <li class="nav-item"><a class="btn btn-outline-primary btn-sm" href="{% url 'register' %}">Registrarse</a></li>
-                        {% endif %}
+                        {% endif %} -->
                     </ul>
                 </div>
             </div>
