@@ -45,6 +45,8 @@ Responsable de todo lo que se realizó en el proyecto
     Cortar servidor -> CTRL + C
     Crear super usuario -> python manage.py createsuperuser
 
+4. Navegando en la app
+    La aplicación se inicia mediante la URL que va a aparecer en la terminal al ejecutar el comando: python manage.py runserver
 
 URLS
 
