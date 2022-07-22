@@ -31,7 +31,7 @@ Responsable de todo lo que se realizó en el proyecto
 
 - - - - - - - - - - - - - - - - - - - - - -
 
-# Getting star:
+# Getting start:
 
 1. Clonar repositorio
 

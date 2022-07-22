@@ -246,19 +246,19 @@ class ProfeDetail(DetailView):
 class ProfeCreate(CreateView):
 
     model = Profesor
-    success_url = "/AppCoder/profesores/list"
+    success_url = "/profesores/list"
     fields = ["nombre", "apellido", "email", "profesion", "curso"]
 
 class ProfeUpdate(UpdateView):
 
     model = Profesor
-    success_url = "/AppCoder/profesores/list"
+    success_url = "/profesores/list"
     fields = ["nombre", "apellido", "email", "profesion", "curso"]
 
 class ProfeDelete(DeleteView):
 
     model = Profesor
-    success_url = "/AppCoder/profesores/list"
+    success_url = "/profesores/list"
     
 
 class CursosList(ListView):
@@ -274,16 +274,16 @@ class CursoDetail(DetailView):
 class CursoCreate(CreateView):
     
     model = Curso
-    success_url = "/AppCoder/curso/list"
+    success_url = "/curso/list"
     fields = ["nombre", "comision"]
     
 class CursoUpdate(UpdateView):
     
     model = Curso
-    success_url = "/AppCoder/curso/list"
+    success_url = "/curso/list"
     fields = ["nombre", "comision"]
     
 class CursoDelete(DeleteView):
     
     model = Curso
-    success_url = "/AppCoder/curso/list"
+    success_url = "/curso/list"
