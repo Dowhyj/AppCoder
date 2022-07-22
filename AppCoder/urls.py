@@ -24,9 +24,6 @@ urlpatterns = [
     path('profesores/editar/<pk>', ProfeUpdate.as_view(), name="profe_update"),
     path('profesores/eliminar/<pk>', ProfeDelete.as_view(), name="profe_delete"),
     
-    path('crearCurso/', crearCurso, name="crearCurso"),
-    path('cursos', cursos, name="cursos"),
-    
     path('curso/list', CursosList.as_view(), name="curso_list"),
     path('curso/<pk>', CursoDetail.as_view(), name="curso_detail"),
     path('curso/nuevo', CursoCreate.as_view(), name="curso_create"),

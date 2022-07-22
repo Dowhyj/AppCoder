@@ -256,40 +256,6 @@ class ProfeDelete(DeleteView):
     success_url = "/AppCoder/profesores/list"
     
 
-def cursos(request):
-    
-    cursos = Curso.objects.all
-    
-    ctx = {"cursos":cursos}
-    
-    return render(request, 'AppCoder/cursos.html',ctx)
-    
-def crearCurso(request):
-    
-    if request.method == "POST":
-    
-        formulario = formularioCurso(request.POST)
-        
-        if formulario.is_valid():
-            
-            info_curso = formulario.cleaned_data
-            
-            curso = Curso(nombre=info_curso["nombre"], comision=info_curso["comision"])
-            
-            curso.save()
-            
-            return redirect('crearCurso')
-        
-        else:
-            
-            return render(request,"AppCoder/form_crear_curso.html",{"form":formulario})
-        
-    else:
-        
-        formularioVacio = formularioCurso()
-        
-        return render(request,"AppCoder/form_crear_curso.html",{"form":formularioVacio})
-    
 class CursosList(ListView):
     
     model = Curso

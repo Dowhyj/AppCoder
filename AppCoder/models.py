@@ -24,6 +24,7 @@ class Profesor(models.Model):
     email = models.EmailField(blank=True, null=True)
     profesion = models.CharField(max_length=150, blank=True, null=True)
     curso = models.CharField(max_length=30, blank=True, null=True)
+    descripcion = models.CharField(max_length=1024, blank=True, null=True)
     
     class Meta:
         verbose_name_plural = "Profesores"

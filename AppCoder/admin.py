@@ -11,7 +11,7 @@ class CursoAdmin(admin.ModelAdmin):
     search_fields = ('nombre', 'comision')
     
 class ProfesorAdmin(admin.ModelAdmin):
-    list_display = ('nombre', 'apellido', 'email')
+    list_display = ('nombre', 'apellido', 'email', 'profesion', 'curso', 'descripcion')
     search_fields = ('nombre','apellido')
     
 admin.site.register(Alumno, AlumnoAdmin)

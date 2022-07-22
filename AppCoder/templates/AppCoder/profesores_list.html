@@ -32,9 +32,13 @@ Profesores - AppCoder
                 <td>{{profe.apellido}}</td>
                 <td>{{profe.profesion}}</td>
                 <td>{{profe.curso}}</td>
+
                 {% if user.is_authenticated %}
                 <td>{{profe.email}}</td>
                 {% endif %}
+
+                <td><a href="{% url 'profe_detail' profe.id %}">Perfil</a></td>
+
                 {% if user.is_superuser %}
                 <td>
                     <a href="{% url 'profe_update' profe.id %}"
