@@ -26,6 +26,7 @@ Responsable de todo lo que se realizó en el proyecto
  Django (v.4.0.5)
  Html
  Css
+ Bootstrap (v.5.1.3)
  Pillow (v.9.2.0)
 
 - - - - - - - - - - - - - - - - - - - - - -

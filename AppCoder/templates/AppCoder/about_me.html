@@ -1,0 +1,25 @@
+{% extends 'AppCoder/base.html' %}
+{% load static %}
+
+{% block tituloPagina %}
+About me - App Coder
+{% endblock %}
+
+{% block contenidoPagina %}
+
+<div class="container px-5 d-flex flex-column align-items-center mt-5 mb-5">
+    <div class="card border border-dark border-3 rounded" style="width: 18rem;">
+        <img src="{% static "imagenes/me.jpg" %}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Lucas Dowhyj</h5>
+            <p class="card-text">Estudiante de segundo año en la carrera de Ciencia de Datos en la Universidad de Buenos
+                Aires. Gran interés sobre el mundo IT, en especial Data Science.</p>
+        </div>
+    </div>
+    <div class="mt-2 mb-2">
+        <h4>Acerca del proyecto</h4>
+        <p>Data House es una plataforma de aprendizaje online, especialmente enfocada al mundo de la Ciencia de Datos. Dentro de esta misma, se encontrarán diferentes cursos relacionados al mundo de los datos. Cualquier persona que quiera aprender, solo debe iniciar sesión en inscribirse al curso que desee.</p>
+    </div>
+</div>
+
+{% endblock %}

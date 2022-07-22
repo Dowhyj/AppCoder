@@ -33,6 +33,11 @@ def base(request):
     return render(request, 'AppCoder/base.html',{})
 
 
+def about_me(request):
+    
+    return render(request,"AppCoder/about_me.html",)
+
+
 def login_request(request):
 
     if request.method == "POST":
