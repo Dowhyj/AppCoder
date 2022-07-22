@@ -1,23 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista cursos</title>
-</head>
-<body>
-    <h2>Cursos:</h2>
-    <ul>
-        {% for curso in object_list %}
-        <li>
-            Curso: {{curso.nombre}} {{curso.comision}}
-            <a href="{% url 'curso_detail' curso.id %}">Ver</a>
+{% extends 'AppCoder/base.html' %}
+{% load static %}
+
+{% block tituloPagina %}
+Cursos - AppCoder
+{% endblock %}
+
+{% block contenidoPagina %}
+
+{% for curso in object_list %}
+
+<div class="container px-5" >
+    <div class="card" style="width: 18rem;">
+        <img src="" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{curso.nombre}}</h5>
+            <a href="#" class="btn btn-primary">Inscribirme</a>
+        </div>
+        {% if user.is_superuser %}
             <a href="{% url 'curso_update' curso.id %}">Editar</a>
             <a href="{% url 'curso_delete' curso.id %}">Eliminar</a>
-        </li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'curso_create' %}">Crear curso</a>
-</body>
-</html>
+        {% endif %}
+    </div>
+</div>
+
+{% endfor %}
+
+{% if user.is_superuser %}
+    <a href="{% url 'curso_create' %}">+Crear curso</a>
+{% endif %}
+
+
+
+{% endblock %}

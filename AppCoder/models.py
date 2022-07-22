@@ -16,6 +16,7 @@ class Alumno(models.Model):
 class Curso(models.Model):
     nombre = models.CharField(max_length=30)
     comision = models.IntegerField()
+    logo = models.ImageField(upload_to='logo/', blank=True, null=True)
     
 class Profesor(models.Model):
     nombre = models.CharField(max_length=30)
