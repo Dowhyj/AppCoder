@@ -54,7 +54,7 @@ Profesores - AppCoder
     </table>
 
     {% if user.is_superuser %}
-    <a href="" class="link-dark">+Agregar profesor</a>
+    <a href="{% url 'profe_create' %}" class="link-dark">+ Crear profesor</a>
     {% endif %}
 </div>
 
