@@ -6,11 +6,11 @@ El proyecto consiste en una plataforma online de aprendizaje donde se ofrecen di
 
 - - - - - - - - - - - - - - - - - - - - - -
 
-link video:
+link video: https://youtu.be/Qua-OAM2mQY
 
 - - - - - - - - - - - - - - - - - - - - - -
 
-Link de repositorio:
+Link de repositorio: https://github.com/Dowhyj/AppCoder.git
 
 - - - - - - - - - - - - - - - - - - - - - -
 
